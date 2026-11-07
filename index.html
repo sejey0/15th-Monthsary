@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>15th Monthsary — October 15, 2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            obsidian: '#060608',
+            surface: '#0e0e12',
+            neonPink: '#f472b6',
+            neonPurple: '#a855f7',
+            neonGreen: '#34d399',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="min-h-screen antialiased selection:bg-purple-500/30 selection:text-pink-200 grid-backdrop relative">
+
+  <!-- Background Audio Asset -->
+  <audio id="bg-audio" src="assets/audio/theme.mp3" loop preload="auto"></audio>
+
+  <!-- Ambient Neon/Pastel Background Gradients -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="ambient-orb absolute -top-28 -left-24 w-96 h-96 rounded-full bg-pink-500"></div>
+    <div class="ambient-orb absolute top-1/3 right-0 w-[28rem] h-[28rem] rounded-full bg-purple-600"></div>
+    <div class="ambient-orb absolute -bottom-32 left-1/3 w-96 h-96 rounded-full bg-emerald-400"></div>
+  </div>
+
+  <!-- 1. SECURE LOCK SCREEN (MONTHSARY VAULT) -->
+  <section id="vault-overlay" class="vault-transition fixed inset-0 z-50 bg-[#060608]/95 backdrop-blur-2xl flex items-center justify-center p-4 overflow-y-auto">
+    <div class="w-full max-w-md border-gradient rounded-3xl p-7 sm:p-9 shadow-2xl relative overflow-hidden">
+      <div class="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-zinc-400 mb-6 pb-4 border-b border-white/10">
+        <span class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-pink-400 animate-pulse"></span>
+          VAULT // ARCHIVE 015
+        </span>
+        <span>OCT.15.2026</span>
+      </div>
+
+      <div class="text-center mb-6">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center relative group">
+          <div class="absolute inset-0 rounded-2xl bg-gradient-to-tr from-pink-500/20 via-purple-500/20 to-emerald-400/20 opacity-80"></div>
+          <svg id="lock-svg" class="w-6 h-6 text-white relative z-10 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+        </div>
+        <h1 class="font-display text-2xl sm:text-3xl font-bold tracking-tight text-white">
+          15th Monthsary <span class="text-gradient">Vault</span>
+        </h1>
+        <p class="text-xs sm:text-sm text-zinc-400 mt-1.5">
+          Authenticate with commemorative PIN <span class="text-zinc-200 font-mono">1015</span> or confirm the milestone date.
+        </p>
+      </div>
+
+      <div id="pin-display" class="flex justify-center items-center gap-3.5 my-5 py-3 px-4 rounded-2xl bg-black/50 border border-white/10">
+        <div class="pin-dot w-3.5 h-3.5 rounded-full border border-zinc-500 transition-all duration-200"></div>
+        <div class="pin-dot w-3.5 h-3.5 rounded-full border border-zinc-500 transition-all duration-200"></div>
+        <div class="pin-dot w-3.5 h-3.5 rounded-full border border-zinc-500 transition-all duration-200"></div>
+        <div class="pin-dot w-3.5 h-3.5 rounded-full border border-zinc-500 transition-all duration-200"></div>
+      </div>
+
+      <p id="vault-status" class="text-center font-mono text-xs h-4 mb-4 text-zinc-400 transition-colors">
+        AWAITING CREDENTIALS
+      </p>
+
+      <div class="grid grid-cols-3 gap-2.5 font-display text-lg font-medium mb-6">
+        <button type="button" data-key="1" class="pin-key h-12 rounded-xl bg-white/[0.03] border border-white/10 text-white">1</button>
+        <button type="button" data-key="2" class="pin-key h-12 rounded-xl bg-white/[0.03] border border-white/10 text-white">2</button>
+        <button type="button" data-key="3" class="pin-key h-12 rounded-xl bg-white/[0.03] border border-white/10 text-white">3</button>
+        <button type="button" data-key="4" class="pin-key h-12 rounded-xl bg-white/[0.03] border border-white/10 text-white">4</button>
+        <button type="button" data-key="5" class="pin-key h-12 rounded-xl bg-white/[0.03] border border-white/10 text-white">5</button>
+        <button type="button" data-key="6" class="pin-key h-12 rounded-xl bg-white/[0.03] border border-white/10 text-white">6</button>
+        <button type="button" data-key="7" class="pin-key h-12 rounded-xl bg-white/[0.03] border border-white/10 text-white">7</button>
+        <button type="button" data-key="8" class="pin-key h-12 rounded-xl bg-white/[0.03] border border-white/10 text-white">8</button>
+        <button type="button" data-key="9" class="pin-key h-12 rounded-xl bg-white/[0.03] border border-white/10 text-white">9</button>
+        <button type="button" id="pin-clear" class="pin-key h-12 rounded-xl bg-white/[0.02] border border-white/10 text-xs font-mono uppercase tracking-wider text-zinc-400 hover:text-white">CLR</button>
+        <button type="button" data-key="0" class="pin-key h-12 rounded-xl bg-white/[0.03] border border-white/10 text-white">0</button>
+        <button type="button" id="pin-back" aria-label="Backspace" class="pin-key h-12 rounded-xl bg-white/[0.02] border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"></path>
+            <line x1="18" y1="9" x2="12" y2="15"></line>
+            <line x1="12" y1="9" x2="18" y2="15"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="pt-4 border-t border-white/10 space-y-2.5">
+        <div class="flex items-center justify-between text-[11px] font-mono text-zinc-400">
+          <span>COMMEMORATIVE DATE VERIFICATION</span>
+          <span class="text-emerald-400">PIN: 1015</span>
+        </div>
+        <div class="flex gap-2">
+          <input
+            id="date-verifier"
+            type="date"
+            value="2026-10-15"
+            class="flex-1 bg-black/60 border border-white/15 rounded-xl px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-purple-400"
+          />
+          <button
+            id="quick-unlock-btn"
+            type="button"
+            class="px-4 py-2 rounded-xl text-xs font-mono uppercase tracking-wider font-medium text-black bg-gradient-to-r from-pink-400 via-purple-400 to-emerald-400 hover:opacity-95 transition flex items-center gap-1.5 shrink-0"
+          >
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Verify Oct 15, 2026
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT (UNLOCKED EXPERIENCE) -->
+  <div id="main-experience" class="main-reveal relative z-10">
+
+    <header class="sticky top-0 z-30 backdrop-blur-xl bg-[#060608]/80 border-b border-white/10">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <span class="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-pink-400 via-purple-400 to-emerald-400"></span>
+          <span class="font-display font-bold tracking-tight text-white text-sm sm:text-base">
+            XV <span class="text-zinc-500 font-mono font-normal text-xs">// 15TH MONTHSARY</span>
+          </span>
+        </div>
+
+        <nav class="hidden md:flex items-center gap-7 text-xs font-mono uppercase tracking-widest text-zinc-400">
+          <a href="#counter" class="hover:text-pink-400 transition">01. Counter</a>
+          <a href="#letter" class="hover:text-purple-400 transition">02. Letter</a>
+          <a href="#timeline" class="hover:text-emerald-400 transition">03. Timeline</a>
+          <a href="#gallery" class="hover:text-pink-400 transition">04. Gallery</a>
+        </nav>
+
+        <div class="flex items-center gap-2">
+          <button
+            id="audio-toggle-btn"
+            type="button"
+            class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-xs font-mono text-zinc-300 transition"
+          >
+            <svg class="w-3.5 h-3.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+            <span id="audio-label">Audio</span>
+          </button>
+
+          <button
+            id="relock-btn"
+            type="button"
+            class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-xs font-mono text-zinc-300 transition"
+          >
+            <svg class="w-3.5 h-3.5 text-pink-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            Lock Vault
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20 space-y-24 sm:space-y-32">
+
+      <!-- LIVE MILESTONE COUNTER SECTION -->
+      <section id="counter" class="space-y-12">
+        <div class="max-w-3xl space-y-5">
+          <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300">
+            <svg class="w-3.5 h-3.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>COMMEMORATING OCTOBER 15, 2026</span>
+          </div>
+
+          <h2 class="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.06] text-white">
+            Fifteen Months of <span class="text-gradient">Quiet Magic</span> &amp; Shared Orbit.
+          </h2>
+
+          <p class="text-zinc-400 text-base sm:text-lg leading-relaxed max-w-2xl">
+            Every hour between our beginning and October 15, 2026—and every second beyond—captured in a living monument to us.
+          </p>
+        </div>
+
+        <div class="border-gradient rounded-3xl p-6 sm:p-10">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-8 border-b border-white/10">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-widest text-zinc-400 block">LIVE CHRONOMETER</span>
+              <h3 id="counter-mode-title" class="font-display text-xl sm:text-2xl font-semibold text-white mt-1">
+                Total Time Together (Since July 15, 2025)
+              </h3>
+            </div>
+
+            <div class="inline-flex rounded-xl bg-black/60 p-1 border border-white/10 self-start sm:self-auto">
+              <button
+                type="button"
+                data-counter-mode="origin"
+                class="counter-tab px-3.5 py-1.5 rounded-lg text-xs font-mono transition bg-white/10 text-white"
+              >
+                Since Day One
+              </button>
+              <button
+                type="button"
+                data-counter-mode="milestone"
+                class="counter-tab px-3.5 py-1.5 rounded-lg text-xs font-mono transition text-zinc-400 hover:text-white"
+              >
+                Oct 15, 2026 Delta
+              </button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            <div class="rounded-2xl bg-white/[0.02] border border-white/10 p-5 sm:p-6 relative overflow-hidden">
+              <div class="text-xs font-mono uppercase tracking-widest text-pink-400 mb-2">Days</div>
+              <div id="cnt-days" class="font-display text-3xl sm:text-5xl font-bold text-white tabular-nums">000</div>
+              <div class="mt-2 text-[11px] font-mono text-zinc-500">SOLAR CYCLES</div>
+            </div>
+
+            <div class="rounded-2xl bg-white/[0.02] border border-white/10 p-5 sm:p-6 relative overflow-hidden">
+              <div class="text-xs font-mono uppercase tracking-widest text-purple-400 mb-2">Hours</div>
+              <div id="cnt-hours" class="font-display text-3xl sm:text-5xl font-bold text-white tabular-nums">00</div>
+              <div class="mt-2 text-[11px] font-mono text-zinc-500">24-HR SEGMENTS</div>
+            </div>
+
+            <div class="rounded-2xl bg-white/[0.02] border border-white/10 p-5 sm:p-6 relative overflow-hidden">
+              <div class="text-xs font-mono uppercase tracking-widest text-emerald-400 mb-2">Minutes</div>
+              <div id="cnt-minutes" class="font-display text-3xl sm:text-5xl font-bold text-white tabular-nums">00</div>
+              <div class="mt-2 text-[11px] font-mono text-zinc-500">SHARED MOMENTS</div>
+            </div>
+
+            <div class="rounded-2xl bg-white/[0.02] border border-white/10 p-5 sm:p-6 relative overflow-hidden">
+              <div class="text-xs font-mono uppercase tracking-widest text-pink-300 mb-2">Seconds</div>
+              <div id="cnt-seconds" class="font-display text-3xl sm:text-5xl font-bold text-gradient tabular-nums">00</div>
+              <div class="mt-2 text-[11px] font-mono text-zinc-500">LIVE PULSE</div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-zinc-400">
+            <span id="counter-direction-badge" class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              MILESTONE STATUS: ACTIVE CHRONOLOGY
+            </span>
+            <span id="total-hours-readout">TOTAL HOURS: --</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. HEARTFELT LETTER SECTION -->
+      <section id="letter" class="space-y-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div>
+            <span class="text-xs font-mono uppercase tracking-widest text-pink-400">02 // PERSONAL DISPATCH</span>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-1">
+              Letter for Our 15th Monthsary
+            </h2>
+          </div>
+
+          <button
+            id="copy-letter-btn"
+            type="button"
+            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.09] border border-white/15 text-xs font-mono text-white transition self-start sm:self-auto"
+          >
+            <svg id="copy-icon" class="w-4 h-4 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span id="copy-label">Copy Letter Text</span>
+          </button>
+        </div>
+
+        <article class="border-gradient rounded-3xl p-7 sm:p-12 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-72 h-72 bg-gradient-to-bl from-pink-500/10 via-purple-500/10 to-transparent pointer-events-none"></div>
+
+          <div class="flex items-center justify-between text-xs font-mono text-zinc-400 pb-6 mb-8 border-b border-white/10">
+            <span>TO: MY FAVORITE PERSON</span>
+            <span>DATE: OCTOBER 15, 2026</span>
+          </div>
+
+          <div id="letter-body" class="space-y-5 text-zinc-200 leading-relaxed text-base sm:text-lg font-light max-w-3xl">
+            <p class="text-white font-medium text-lg sm:text-xl">
+              My Love,
+            </p>
+            <p>
+              Fifteen months ago, our story began as a quiet spark—and today, on October 15, 2026, it stands as my favorite place to exist. Looking back across these 457 days, what moves me most is not just the grand milestones we celebrated, but the effortless warmth of our ordinary days.
+            </p>
+            <p>
+              You have turned late-night conversations into sanctuaries, shared silences into comfort, and uncertain tomorrows into adventures I cannot wait to wake up for. In a world that moves too fast, loving you has taught me how to slow down and notice every detail.
+            </p>
+            <p>
+              Thank you for your patience, your laughter, your unwavering kindness, and the way you choose us every single day. Fifteen months is only the prologue—here is to every chapter waiting ahead of us.
+            </p>
+            <p class="pt-4 font-display text-white font-semibold">
+              Always yours,<br />
+              <span class="text-gradient">Forever &amp; Beyond Fifteen</span>
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <!-- 3. INTERACTIVE TIMELINE -->
+      <section id="timeline" class="space-y-10">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div>
+            <span class="text-xs font-mono uppercase tracking-widest text-purple-400">03 // CHRONOLOGY</span>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-1">
+              Interactive Milestone Timeline
+            </h2>
+          </div>
+          <p class="text-xs font-mono text-zinc-400">SELECT ANY MILESTONE TO INSPECT DETAILS</p>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-8 items-start">
+          <div id="timeline-list" class="lg:col-span-7 space-y-3 relative before:content-[''] before:absolute before:left-5 before:top-4 before:bottom-4 before:w-px before:bg-gradient-to-b before:from-pink-400 before:via-purple-400 before:to-emerald-400"></div>
+
+          <div class="lg:col-span-5 lg:sticky lg:top-24 border-gradient rounded-3xl p-6 sm:p-8 space-y-5">
+            <div class="flex items-center justify-between">
+              <span id="tl-detail-tag" class="px-3 py-1 rounded-full text-xs font-mono bg-pink-500/15 text-pink-300 border border-pink-400/30">
+                MONTH 01
+              </span>
+              <span id="tl-detail-date" class="text-xs font-mono text-zinc-400">JULY 15, 2025</span>
+            </div>
+            <h3 id="tl-detail-title" class="font-display text-2xl font-bold text-white">
+              Where the Orbit Began
+            </h3>
+            <p id="tl-detail-desc" class="text-zinc-300 text-sm sm:text-base leading-relaxed">
+              The day everything aligned. A simple beginning that quietly rewrote every plan and routine into something shared.
+            </p>
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-zinc-400">
+              <span id="tl-detail-coord">COORDINATE // CHAPTER I</span>
+              <span class="text-emerald-400">VERIFIED MEMORY</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. MEMORY GALLERY GRID -->
+      <section id="gallery" class="space-y-10">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div>
+            <span class="text-xs font-mono uppercase tracking-widest text-emerald-400">04 // VISUAL ARCHIVE</span>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-1">
+              Memory Gallery
+            </h2>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <button type="button" data-filter="all" class="gallery-filter px-3.5 py-1.5 rounded-full text-xs font-mono bg-white text-black font-medium transition">All Frames</button>
+            <button type="button" data-filter="pink" class="gallery-filter px-3.5 py-1.5 rounded-full text-xs font-mono bg-white/[0.04] text-zinc-300 border border-white/10 hover:border-pink-400 transition">Late Nights</button>
+            <button type="button" data-filter="purple" class="gallery-filter px-3.5 py-1.5 rounded-full text-xs font-mono bg-white/[0.04] text-zinc-300 border border-white/10 hover:border-purple-400 transition">Adventures</button>
+            <button type="button" data-filter="green" class="gallery-filter px-3.5 py-1.5 rounded-full text-xs font-mono bg-white/[0.04] text-zinc-300 border border-white/10 hover:border-emerald-400 transition">Sanctuary</button>
+          </div>
+        </div>
+
+        <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      </section>
+
+    </main>
+
+    <footer class="border-t border-white/10 py-10 mt-20">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-500">
+        <span>15TH MONTHSARY ARCHIVE // OCTOBER 15, 2026</span>
+        <span class="text-zinc-400">DESIGNED IN MONOCHROME &amp; NEON GRADIENTS</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/85 backdrop-blur-xl p-4">
+    <div class="max-w-lg w-full border-gradient rounded-3xl p-6 sm:p-8 space-y-5 relative">
+      <button id="lightbox-close" type="button" aria-label="Close modal" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-zinc-300 z-10">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div id="lightbox-art" class="w-full h-56 rounded-2xl overflow-hidden flex items-center justify-center border border-white/10"></div>
+      <div class="space-y-2">
+        <div id="lightbox-meta" class="text-xs font-mono uppercase tracking-widest text-pink-400"></div>
+        <h4 id="lightbox-title" class="font-display text-2xl font-bold text-white"></h4>
+        <p id="lightbox-caption" class="text-sm text-zinc-300 leading-relaxed"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
