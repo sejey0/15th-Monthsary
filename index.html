@@ -34,42 +34,33 @@
 <body class="min-h-screen antialiased selection:bg-purple-500/30 selection:text-pink-200 grid-backdrop relative">
 
   <!-- Background Audio Asset -->
-  <audio id="bg-audio" src="assets/audio/theme.mp3" loop preload="auto"></audio>
+  <audio id="bg-audio" src="assets/audio/Love%20Is.mp3" loop preload="auto"></audio>
 
-  <!-- Ambient Neon/Pastel Background Gradients -->
-  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
-    <div class="ambient-orb absolute -top-28 -left-24 w-96 h-96 rounded-full bg-pink-500"></div>
-    <div class="ambient-orb absolute top-1/3 right-0 w-[28rem] h-[28rem] rounded-full bg-purple-600"></div>
-    <div class="ambient-orb absolute -bottom-32 left-1/3 w-96 h-96 rounded-full bg-emerald-400"></div>
+  <!-- Global 3-Tile Full-Screen Background Slideshow (Login & Letter BG) -->
+  <div id="login-slideshow" class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div class="grid grid-cols-3 w-full h-full gap-1.5 bg-[#060608]">
+      <div class="relative w-full h-full overflow-hidden">
+        <img id="tile-0-a" class="slide-tile active" alt="" />
+        <img id="tile-0-b" class="slide-tile" alt="" />
+      </div>
+      <div class="relative w-full h-full overflow-hidden">
+        <img id="tile-1-a" class="slide-tile active" alt="" />
+        <img id="tile-1-b" class="slide-tile" alt="" />
+      </div>
+      <div class="relative w-full h-full overflow-hidden">
+        <img id="tile-2-a" class="slide-tile active" alt="" />
+        <img id="tile-2-b" class="slide-tile" alt="" />
+      </div>
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-tr from-[#060608]/80 via-[#090910]/55 to-purple-950/40"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,#060608_95%)]"></div>
   </div>
 
   <!-- 1. SECURE LOCK SCREEN (MONTHSARY VAULT) -->
-  <section id="vault-overlay" class="vault-transition fixed inset-0 z-50 bg-[#060608] flex items-center justify-center p-4 overflow-y-auto">
-    <!-- 3-Tile Full-Screen Background Slideshow -->
-    <div id="login-slideshow" class="fixed inset-0 pointer-events-none overflow-hidden">
-      <div class="grid grid-cols-3 w-full h-full gap-1.5 bg-[#060608]">
-        <div class="relative w-full h-full overflow-hidden">
-          <img id="tile-0-a" class="slide-tile active" alt="" />
-          <img id="tile-0-b" class="slide-tile" alt="" />
-        </div>
-        <div class="relative w-full h-full overflow-hidden">
-          <img id="tile-1-a" class="slide-tile active" alt="" />
-          <img id="tile-1-b" class="slide-tile" alt="" />
-        </div>
-        <div class="relative w-full h-full overflow-hidden">
-          <img id="tile-2-a" class="slide-tile active" alt="" />
-          <img id="tile-2-b" class="slide-tile" alt="" />
-        </div>
-      </div>
-      <!-- Dark Editorial Vignette & Subtle Neon Tint Overlay -->
-      <div class="absolute inset-0 bg-gradient-to-tr from-[#060608]/80 via-[#090910]/55 to-purple-950/40"></div>
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,#060608_95%)]"></div>
-    </div>
+  <section id="vault-overlay" class="vault-transition fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
 
     <div class="w-full max-w-sm border-gradient rounded-3xl p-7 sm:p-9 shadow-[0_0_70px_-15px_rgba(168,85,247,0.28)] relative overflow-hidden bg-[#101017]/90 backdrop-blur-2xl">
-      <!-- Top Gradient Accent Line -->
       <div class="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-pink-400 via-purple-400 to-emerald-400"></div>
-      <!-- Soft Ambient Card Glow -->
       <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-52 h-32 bg-gradient-to-b from-purple-500/25 via-pink-500/15 to-transparent blur-2xl pointer-events-none"></div>
 
       <div class="text-center mb-6 relative z-10">
@@ -118,276 +109,165 @@
           </svg>
         </button>
       </div>
+
+      <!-- Bypass Enter Button -->
+      <button
+        type="button"
+        id="bypass-enter-btn"
+        class="mt-4 w-full h-11 rounded-xl bg-gradient-to-r from-pink-500/25 via-purple-500/25 to-emerald-400/25 hover:from-pink-500/40 hover:via-purple-500/40 hover:to-emerald-400/40 border border-white/15 text-xs font-mono uppercase tracking-widest text-white transition flex items-center justify-center gap-2 relative z-10"
+      >
+        <span>Enter</span>
+        <svg class="w-3.5 h-3.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
     </div>
   </section>
 
-  <!-- MAIN CONTENT (UNLOCKED EXPERIENCE) -->
-  <div id="main-experience" class="main-reveal relative z-10">
+  <!-- 2. UNLOCKED LETTER & MUSIC PLAYER ONLY -->
+  <div id="main-experience" class="main-reveal relative z-10 min-h-screen flex flex-col justify-center py-10 px-4 sm:px-6">
+    <main class="w-full max-w-3xl mx-auto space-y-6">
 
-    <header class="sticky top-0 z-30 backdrop-blur-xl bg-[#060608]/80 border-b border-white/10">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <span class="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-pink-400 via-purple-400 to-emerald-400"></span>
-          <span class="font-display font-bold tracking-tight text-white text-sm sm:text-base">
-            XV <span class="text-zinc-500 font-mono font-normal text-xs">// 15TH MONTHSARY</span>
-          </span>
-        </div>
-
-        <nav class="hidden md:flex items-center gap-7 text-xs font-mono uppercase tracking-widest text-zinc-400">
-          <a href="#counter" class="hover:text-pink-400 transition">01. Counter</a>
-          <a href="#letter" class="hover:text-purple-400 transition">02. Letter</a>
-          <a href="#timeline" class="hover:text-emerald-400 transition">03. Timeline</a>
-          <a href="#gallery" class="hover:text-pink-400 transition">04. Gallery</a>
-        </nav>
-
-        <div class="flex items-center gap-2">
-          <button
-            id="audio-toggle-btn"
-            type="button"
-            class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-xs font-mono text-zinc-300 transition"
-          >
-            <svg class="w-3.5 h-3.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-            </svg>
-            <span id="audio-label">Audio</span>
-          </button>
-
-          <button
-            id="relock-btn"
-            type="button"
-            class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-xs font-mono text-zinc-300 transition"
-          >
-            <svg class="w-3.5 h-3.5 text-pink-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-            </svg>
-            Lock Vault
-          </button>
-        </div>
-      </div>
-    </header>
-
-    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20 space-y-24 sm:space-y-32">
-
-      <!-- LIVE MILESTONE COUNTER SECTION -->
-      <section id="counter" class="space-y-12">
-        <div class="max-w-3xl space-y-5">
-          <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-zinc-300">
-            <svg class="w-3.5 h-3.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="12 6 12 12 16 14"></polyline>
-            </svg>
-            <span>COMMEMORATING OCTOBER 15, 2026</span>
+      <!-- Compact Top Bar: Slim Music Player + Lock Letter Button -->
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <!-- Compact Single-Row Music Player -->
+        <div id="music-player" class="border-gradient rounded-2xl px-3.5 py-2 bg-[#0e0e15]/95 backdrop-blur-2xl shadow-lg flex flex-wrap items-center gap-3">
+          <!-- Track Name & Equalizer -->
+          <div class="flex items-center gap-2 pr-1">
+            <div id="eq-bars" class="flex items-end gap-0.5 h-3">
+              <span class="eq-bar w-0.5 h-1.5 bg-pink-400 rounded-full"></span>
+              <span class="eq-bar w-0.5 h-3 bg-purple-400 rounded-full"></span>
+              <span class="eq-bar w-0.5 h-2 bg-emerald-400 rounded-full"></span>
+            </div>
+            <span class="font-display text-xs font-semibold text-white whitespace-nowrap">Love Is</span>
           </div>
 
-          <h2 class="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.06] text-white">
-            Fifteen Months of <span class="text-gradient">Quiet Magic</span> &amp; Shared Orbit.
-          </h2>
+          <!-- Transport Controls -->
+          <div class="flex items-center gap-1">
+            <button
+              id="player-rw-btn"
+              type="button"
+              title="Rewind 10s"
+              aria-label="Rewind 10 seconds"
+              class="w-7 h-7 rounded-lg bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 flex items-center justify-center text-zinc-300 hover:text-white transition"
+            >
+              <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 19 2 12 11 5 11 19"></polygon>
+                <polygon points="22 19 13 12 22 5 22 19"></polygon>
+              </svg>
+            </button>
 
-          <p class="text-zinc-400 text-base sm:text-lg leading-relaxed max-w-2xl">
-            Every hour between our beginning and October 15, 2026—and every second beyond—captured in a living monument to us.
+            <button
+              id="player-play-btn"
+              type="button"
+              title="Play / Pause"
+              aria-label="Play or Pause Music"
+              class="w-7 h-7 rounded-lg bg-gradient-to-tr from-pink-500/25 via-purple-500/25 to-emerald-400/25 border border-white/20 flex items-center justify-center text-white hover:border-pink-400/60 transition"
+            >
+              <svg id="icon-play" class="w-3 h-3 ml-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              <svg id="icon-pause" class="w-3 h-3 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="6" y="4" width="4" height="16"></rect>
+                <rect x="14" y="4" width="4" height="16"></rect>
+              </svg>
+            </button>
+
+            <button
+              id="player-ff-btn"
+              type="button"
+              title="Fast Forward 10s"
+              aria-label="Fast Forward 10 seconds"
+              class="w-7 h-7 rounded-lg bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 flex items-center justify-center text-zinc-300 hover:text-white transition"
+            >
+              <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 19 22 12 13 5 13 19"></polygon>
+                <polygon points="2 19 11 12 2 5 2 19"></polygon>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Seek Slider + Time -->
+          <div class="flex items-center gap-2">
+            <input
+              id="player-seek"
+              type="range"
+              min="0"
+              max="100"
+              value="0"
+              step="0.1"
+              aria-label="Seek timeline"
+              class="player-range w-24 sm:w-32 h-1 bg-white/15 rounded-lg appearance-none cursor-pointer"
+            />
+            <span class="text-[10px] font-mono text-zinc-400 tabular-nums whitespace-nowrap">
+              <span id="player-current">0:00</span> / <span id="player-duration">0:00</span>
+            </span>
+          </div>
+
+          <!-- Volume Control -->
+          <div class="flex items-center gap-1.5 pl-1 border-l border-white/10">
+            <button
+              id="player-mute-btn"
+              type="button"
+              title="Mute / Unmute"
+              aria-label="Toggle Mute"
+              class="w-6 h-6 rounded-md hover:bg-white/[0.08] flex items-center justify-center text-zinc-300 transition shrink-0"
+            >
+              <svg id="icon-vol-on" class="w-3.5 h-3.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              </svg>
+              <svg id="icon-vol-off" class="w-3.5 h-3.5 text-pink-400 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+            </button>
+
+            <input
+              id="player-volume"
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.8"
+              aria-label="Volume"
+              class="player-range w-14 h-1 bg-white/15 rounded-lg appearance-none cursor-pointer"
+            />
+          </div>
+        </div>
+
+        <!-- Compact Lock Letter Button -->
+        <button
+          id="relock-btn"
+          type="button"
+          class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.1] border border-white/15 text-[11px] font-mono uppercase tracking-wider text-zinc-200 hover:text-white transition"
+        >
+          <svg class="w-3.5 h-3.5 text-pink-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          Lock Letter
+        </button>
+      </div>
+
+      <!-- Heartfelt Letter Card -->
+      <article id="letter" class="border-gradient rounded-3xl p-7 sm:p-12 relative overflow-hidden bg-[#0e0e15]/90 backdrop-blur-2xl shadow-2xl">
+        <div class="flex items-center justify-between text-xs font-mono text-zinc-400 pb-6 mb-8 border-b border-white/10">
+          <span>15TH MONTHSARY LETTER</span>
+          <span>OCTOBER 15, 2026</span>
+        </div>
+
+        <div id="letter-body" class="space-y-5 text-zinc-200 leading-relaxed text-base sm:text-lg font-light">
+          <p class="pt-2 font-display text-white font-semibold">
+            Forever and only yours,<br />
+            <span class="text-gradient">CJay</span>
           </p>
         </div>
-
-        <div class="border-gradient rounded-3xl p-6 sm:p-10">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-8 border-b border-white/10">
-            <div>
-              <span class="text-xs font-mono uppercase tracking-widest text-zinc-400 block">LIVE CHRONOMETER</span>
-              <h3 id="counter-mode-title" class="font-display text-xl sm:text-2xl font-semibold text-white mt-1">
-                Total Time Together (Since July 15, 2025)
-              </h3>
-            </div>
-
-            <div class="inline-flex rounded-xl bg-black/60 p-1 border border-white/10 self-start sm:self-auto">
-              <button
-                type="button"
-                data-counter-mode="origin"
-                class="counter-tab px-3.5 py-1.5 rounded-lg text-xs font-mono transition bg-white/10 text-white"
-              >
-                Since Day One
-              </button>
-              <button
-                type="button"
-                data-counter-mode="milestone"
-                class="counter-tab px-3.5 py-1.5 rounded-lg text-xs font-mono transition text-zinc-400 hover:text-white"
-              >
-                Oct 15, 2026 Delta
-              </button>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            <div class="rounded-2xl bg-white/[0.02] border border-white/10 p-5 sm:p-6 relative overflow-hidden">
-              <div class="text-xs font-mono uppercase tracking-widest text-pink-400 mb-2">Days</div>
-              <div id="cnt-days" class="font-display text-3xl sm:text-5xl font-bold text-white tabular-nums">000</div>
-              <div class="mt-2 text-[11px] font-mono text-zinc-500">SOLAR CYCLES</div>
-            </div>
-
-            <div class="rounded-2xl bg-white/[0.02] border border-white/10 p-5 sm:p-6 relative overflow-hidden">
-              <div class="text-xs font-mono uppercase tracking-widest text-purple-400 mb-2">Hours</div>
-              <div id="cnt-hours" class="font-display text-3xl sm:text-5xl font-bold text-white tabular-nums">00</div>
-              <div class="mt-2 text-[11px] font-mono text-zinc-500">24-HR SEGMENTS</div>
-            </div>
-
-            <div class="rounded-2xl bg-white/[0.02] border border-white/10 p-5 sm:p-6 relative overflow-hidden">
-              <div class="text-xs font-mono uppercase tracking-widest text-emerald-400 mb-2">Minutes</div>
-              <div id="cnt-minutes" class="font-display text-3xl sm:text-5xl font-bold text-white tabular-nums">00</div>
-              <div class="mt-2 text-[11px] font-mono text-zinc-500">SHARED MOMENTS</div>
-            </div>
-
-            <div class="rounded-2xl bg-white/[0.02] border border-white/10 p-5 sm:p-6 relative overflow-hidden">
-              <div class="text-xs font-mono uppercase tracking-widest text-pink-300 mb-2">Seconds</div>
-              <div id="cnt-seconds" class="font-display text-3xl sm:text-5xl font-bold text-gradient tabular-nums">00</div>
-              <div class="mt-2 text-[11px] font-mono text-zinc-500">LIVE PULSE</div>
-            </div>
-          </div>
-
-          <div class="mt-6 pt-5 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-zinc-400">
-            <span id="counter-direction-badge" class="flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-              MILESTONE STATUS: ACTIVE CHRONOLOGY
-            </span>
-            <span id="total-hours-readout">TOTAL HOURS: --</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- 2. HEARTFELT LETTER SECTION -->
-      <section id="letter" class="space-y-8">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-          <div>
-            <span class="text-xs font-mono uppercase tracking-widest text-pink-400">02 // PERSONAL DISPATCH</span>
-            <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-1">
-              Letter for Our 15th Monthsary
-            </h2>
-          </div>
-
-          <button
-            id="copy-letter-btn"
-            type="button"
-            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.09] border border-white/15 text-xs font-mono text-white transition self-start sm:self-auto"
-          >
-            <svg id="copy-icon" class="w-4 h-4 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-            </svg>
-            <span id="copy-label">Copy Letter Text</span>
-          </button>
-        </div>
-
-        <article class="border-gradient rounded-3xl p-7 sm:p-12 relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-72 h-72 bg-gradient-to-bl from-pink-500/10 via-purple-500/10 to-transparent pointer-events-none"></div>
-
-          <div class="flex items-center justify-between text-xs font-mono text-zinc-400 pb-6 mb-8 border-b border-white/10">
-            <span>TO: MY FAVORITE PERSON</span>
-            <span>DATE: OCTOBER 15, 2026</span>
-          </div>
-
-          <div id="letter-body" class="space-y-5 text-zinc-200 leading-relaxed text-base sm:text-lg font-light max-w-3xl">
-            <p class="text-white font-medium text-lg sm:text-xl">
-              My Love,
-            </p>
-            <p>
-              Fifteen months ago, our story began as a quiet spark—and today, on October 15, 2026, it stands as my favorite place to exist. Looking back across these 457 days, what moves me most is not just the grand milestones we celebrated, but the effortless warmth of our ordinary days.
-            </p>
-            <p>
-              You have turned late-night conversations into sanctuaries, shared silences into comfort, and uncertain tomorrows into adventures I cannot wait to wake up for. In a world that moves too fast, loving you has taught me how to slow down and notice every detail.
-            </p>
-            <p>
-              Thank you for your patience, your laughter, your unwavering kindness, and the way you choose us every single day. Fifteen months is only the prologue—here is to every chapter waiting ahead of us.
-            </p>
-            <p class="pt-4 font-display text-white font-semibold">
-              Always yours,<br />
-              <span class="text-gradient">Forever &amp; Beyond Fifteen</span>
-            </p>
-          </div>
-        </article>
-      </section>
-
-      <!-- 3. INTERACTIVE TIMELINE -->
-      <section id="timeline" class="space-y-10">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-          <div>
-            <span class="text-xs font-mono uppercase tracking-widest text-purple-400">03 // CHRONOLOGY</span>
-            <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-1">
-              Interactive Milestone Timeline
-            </h2>
-          </div>
-          <p class="text-xs font-mono text-zinc-400">SELECT ANY MILESTONE TO INSPECT DETAILS</p>
-        </div>
-
-        <div class="grid lg:grid-cols-12 gap-8 items-start">
-          <div id="timeline-list" class="lg:col-span-7 space-y-3 relative before:content-[''] before:absolute before:left-5 before:top-4 before:bottom-4 before:w-px before:bg-gradient-to-b before:from-pink-400 before:via-purple-400 before:to-emerald-400"></div>
-
-          <div class="lg:col-span-5 lg:sticky lg:top-24 border-gradient rounded-3xl p-6 sm:p-8 space-y-5">
-            <div class="flex items-center justify-between">
-              <span id="tl-detail-tag" class="px-3 py-1 rounded-full text-xs font-mono bg-pink-500/15 text-pink-300 border border-pink-400/30">
-                MONTH 01
-              </span>
-              <span id="tl-detail-date" class="text-xs font-mono text-zinc-400">JULY 15, 2025</span>
-            </div>
-            <h3 id="tl-detail-title" class="font-display text-2xl font-bold text-white">
-              Where the Orbit Began
-            </h3>
-            <p id="tl-detail-desc" class="text-zinc-300 text-sm sm:text-base leading-relaxed">
-              The day everything aligned. A simple beginning that quietly rewrote every plan and routine into something shared.
-            </p>
-            <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-zinc-400">
-              <span id="tl-detail-coord">COORDINATE // CHAPTER I</span>
-              <span class="text-emerald-400">VERIFIED MEMORY</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 4. MEMORY GALLERY GRID -->
-      <section id="gallery" class="space-y-10">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-          <div>
-            <span class="text-xs font-mono uppercase tracking-widest text-emerald-400">04 // VISUAL ARCHIVE</span>
-            <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-1">
-              Memory Gallery
-            </h2>
-          </div>
-
-          <div class="flex flex-wrap gap-2">
-            <button type="button" data-filter="all" class="gallery-filter px-3.5 py-1.5 rounded-full text-xs font-mono bg-white text-black font-medium transition">All Frames</button>
-            <button type="button" data-filter="pink" class="gallery-filter px-3.5 py-1.5 rounded-full text-xs font-mono bg-white/[0.04] text-zinc-300 border border-white/10 hover:border-pink-400 transition">Late Nights</button>
-            <button type="button" data-filter="purple" class="gallery-filter px-3.5 py-1.5 rounded-full text-xs font-mono bg-white/[0.04] text-zinc-300 border border-white/10 hover:border-purple-400 transition">Adventures</button>
-            <button type="button" data-filter="green" class="gallery-filter px-3.5 py-1.5 rounded-full text-xs font-mono bg-white/[0.04] text-zinc-300 border border-white/10 hover:border-emerald-400 transition">Sanctuary</button>
-          </div>
-        </div>
-
-        <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-      </section>
+      </article>
 
     </main>
-
-    <footer class="border-t border-white/10 py-10 mt-20">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-500">
-        <span>15TH MONTHSARY ARCHIVE // OCTOBER 15, 2026</span>
-        <span class="text-zinc-400">DESIGNED IN MONOCHROME &amp; NEON GRADIENTS</span>
-      </div>
-    </footer>
-  </div>
-
-  <!-- Lightbox Modal -->
-  <div id="lightbox-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/85 backdrop-blur-xl p-4">
-    <div class="max-w-lg w-full border-gradient rounded-3xl p-6 sm:p-8 space-y-5 relative">
-      <button id="lightbox-close" type="button" aria-label="Close modal" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-zinc-300 z-10">
-        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
-      <div id="lightbox-art" class="w-full h-56 rounded-2xl overflow-hidden flex items-center justify-center border border-white/10"></div>
-      <div class="space-y-2">
-        <div id="lightbox-meta" class="text-xs font-mono uppercase tracking-widest text-pink-400"></div>
-        <h4 id="lightbox-title" class="font-display text-2xl font-bold text-white"></h4>
-        <p id="lightbox-caption" class="text-sm text-zinc-300 leading-relaxed"></p>
-      </div>
-    </div>
   </div>
 
   <script src="js/app.js"></script>
