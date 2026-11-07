@@ -45,43 +45,34 @@
 
   <!-- 1. SECURE LOCK SCREEN (MONTHSARY VAULT) -->
   <section id="vault-overlay" class="vault-transition fixed inset-0 z-50 bg-[#060608]/95 backdrop-blur-2xl flex items-center justify-center p-4 overflow-y-auto">
-    <div class="w-full max-w-md border-gradient rounded-3xl p-7 sm:p-9 shadow-2xl relative overflow-hidden">
-      <div class="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-zinc-400 mb-6 pb-4 border-b border-white/10">
-        <span class="flex items-center gap-2">
-          <span class="w-2 h-2 rounded-full bg-pink-400 animate-pulse"></span>
-          VAULT // ARCHIVE 015
-        </span>
-        <span>OCT.15.2026</span>
-      </div>
-
+    <div class="w-full max-w-sm border-gradient rounded-3xl p-7 sm:p-9 shadow-2xl relative overflow-hidden">
       <div class="text-center mb-6">
-        <div class="w-14 h-14 mx-auto mb-4 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center relative group">
+        <div class="w-12 h-12 mx-auto mb-4 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center relative">
           <div class="absolute inset-0 rounded-2xl bg-gradient-to-tr from-pink-500/20 via-purple-500/20 to-emerald-400/20 opacity-80"></div>
-          <svg id="lock-svg" class="w-6 h-6 text-white relative z-10 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <svg id="lock-svg" class="w-5 h-5 text-white relative z-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
           </svg>
         </div>
-        <h1 class="font-display text-2xl sm:text-3xl font-bold tracking-tight text-white">
+        <h1 class="font-display text-2xl font-bold tracking-tight text-white">
           15th Monthsary <span class="text-gradient">Vault</span>
         </h1>
-        <p class="text-xs sm:text-sm text-zinc-400 mt-1.5">
-          Authenticate with commemorative PIN <span class="text-zinc-200 font-mono">1015</span> or confirm the milestone date.
-        </p>
       </div>
 
-      <div id="pin-display" class="flex justify-center items-center gap-3.5 my-5 py-3 px-4 rounded-2xl bg-black/50 border border-white/10">
-        <div class="pin-dot w-3.5 h-3.5 rounded-full border border-zinc-500 transition-all duration-200"></div>
-        <div class="pin-dot w-3.5 h-3.5 rounded-full border border-zinc-500 transition-all duration-200"></div>
-        <div class="pin-dot w-3.5 h-3.5 rounded-full border border-zinc-500 transition-all duration-200"></div>
-        <div class="pin-dot w-3.5 h-3.5 rounded-full border border-zinc-500 transition-all duration-200"></div>
+      <div id="pin-display" class="flex justify-center items-center gap-3 my-5 py-3.5 px-4 rounded-2xl bg-black/50 border border-white/10">
+        <div class="pin-dot w-3 h-3 rounded-full border border-zinc-500 transition-all duration-200"></div>
+        <div class="pin-dot w-3 h-3 rounded-full border border-zinc-500 transition-all duration-200"></div>
+        <div class="pin-dot w-3 h-3 rounded-full border border-zinc-500 transition-all duration-200"></div>
+        <div class="pin-dot w-3 h-3 rounded-full border border-zinc-500 transition-all duration-200"></div>
+        <div class="pin-dot w-3 h-3 rounded-full border border-zinc-500 transition-all duration-200"></div>
+        <div class="pin-dot w-3 h-3 rounded-full border border-zinc-500 transition-all duration-200"></div>
       </div>
 
-      <p id="vault-status" class="text-center font-mono text-xs h-4 mb-4 text-zinc-400 transition-colors">
-        AWAITING CREDENTIALS
+      <p id="vault-status" class="text-center font-mono text-[11px] tracking-widest h-4 mb-4 text-zinc-500 transition-colors">
+        ENTER PASSCODE
       </p>
 
-      <div class="grid grid-cols-3 gap-2.5 font-display text-lg font-medium mb-6">
+      <div class="grid grid-cols-3 gap-2.5 font-display text-lg font-medium">
         <button type="button" data-key="1" class="pin-key h-12 rounded-xl bg-white/[0.03] border border-white/10 text-white">1</button>
         <button type="button" data-key="2" class="pin-key h-12 rounded-xl bg-white/[0.03] border border-white/10 text-white">2</button>
         <button type="button" data-key="3" class="pin-key h-12 rounded-xl bg-white/[0.03] border border-white/10 text-white">3</button>
@@ -100,31 +91,6 @@
             <line x1="12" y1="9" x2="18" y2="15"></line>
           </svg>
         </button>
-      </div>
-
-      <div class="pt-4 border-t border-white/10 space-y-2.5">
-        <div class="flex items-center justify-between text-[11px] font-mono text-zinc-400">
-          <span>COMMEMORATIVE DATE VERIFICATION</span>
-          <span class="text-emerald-400">PIN: 1015</span>
-        </div>
-        <div class="flex gap-2">
-          <input
-            id="date-verifier"
-            type="date"
-            value="2026-10-15"
-            class="flex-1 bg-black/60 border border-white/15 rounded-xl px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-purple-400"
-          />
-          <button
-            id="quick-unlock-btn"
-            type="button"
-            class="px-4 py-2 rounded-xl text-xs font-mono uppercase tracking-wider font-medium text-black bg-gradient-to-r from-pink-400 via-purple-400 to-emerald-400 hover:opacity-95 transition flex items-center gap-1.5 shrink-0"
-          >
-            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="20 6 9 17 4 12"></polyline>
-            </svg>
-            Verify Oct 15, 2026
-          </button>
-        </div>
       </div>
     </div>
   </section>

@@ -1,63 +1,97 @@
 // =====================================================
-// 1. SECURE VAULT LOCK SCREEN (PIN: 1015 / OCT 15, 2026)
+// 1. SECURE VAULT LOCK SCREEN (6-DIGIT PASSCODE)
 // =====================================================
-const TARGET_PIN = "1015";
-const TARGET_DATE = "2026-10-15";
+const _K = [90, 165, 60, 195, 126, 231];
+const _V = [106, 146, 13, 246, 76, 210];
 let currentPin = "";
+let isVerifying = false;
 
 const vaultOverlay = document.getElementById("vault-overlay");
 const mainExperience = document.getElementById("main-experience");
 const pinDots = document.querySelectorAll(".pin-dot");
 const vaultStatus = document.getElementById("vault-status");
 const pinDisplay = document.getElementById("pin-display");
-const dateVerifier = document.getElementById("date-verifier");
 const bgAudio = document.getElementById("bg-audio");
 const audioToggleBtn = document.getElementById("audio-toggle-btn");
 const audioLabel = document.getElementById("audio-label");
+
+function verifyLocal(pin) {
+  if (pin.length !== _V.length) return false;
+  let diff = 0;
+  for (let i = 0; i < _V.length; i++) {
+    diff |= (pin.charCodeAt(i) ^ _K[i]) ^ _V[i];
+  }
+  return diff === 0;
+}
+
+async function verifyPasscode(pin) {
+  try {
+    const res = await fetch("/api/verify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ pin })
+    });
+    if (res.ok) {
+      const data = await res.json();
+      return Boolean(data.valid);
+    }
+  } catch (_) {}
+  return verifyLocal(pin);
+}
 
 function updatePinUI() {
   pinDots.forEach((dot, idx) => {
     if (idx < currentPin.length) {
       dot.className =
-        "pin-dot w-3.5 h-3.5 rounded-full bg-gradient-to-r from-pink-400 via-purple-400 to-emerald-400 border-transparent scale-110 transition-all duration-200";
+        "pin-dot w-3 h-3 rounded-full bg-gradient-to-r from-pink-400 via-purple-400 to-emerald-400 border-transparent scale-110 transition-all duration-200";
     } else {
       dot.className =
-        "pin-dot w-3.5 h-3.5 rounded-full border border-zinc-500 transition-all duration-200";
+        "pin-dot w-3 h-3 rounded-full border border-zinc-500 transition-all duration-200";
     }
   });
 }
 
 function unlockVault() {
-  vaultStatus.textContent = "ACCESS GRANTED // OCTOBER 15, 2026";
+  vaultStatus.textContent = "UNLOCKED";
   vaultStatus.className =
-    "text-center font-mono text-xs h-4 mb-4 text-emerald-400";
+    "text-center font-mono text-[11px] tracking-widest h-4 mb-4 text-emerald-400";
   setTimeout(() => {
     vaultOverlay.classList.add("vault-unlocked");
     mainExperience.classList.add("active");
     if (bgAudio && bgAudio.paused) {
-      bgAudio.play().then(() => {
-        audioLabel.textContent = "Audio: Playing";
-      }).catch(() => {});
+      bgAudio
+        .play()
+        .then(() => {
+          audioLabel.textContent = "Audio: Playing";
+        })
+        .catch(() => {});
     }
-  }, 280);
+  }, 250);
 }
 
-function handlePinInput(digit) {
-  if (currentPin.length >= 4) return;
+async function handlePinInput(digit) {
+  if (currentPin.length >= 6 || isVerifying) return;
   currentPin += digit;
   updatePinUI();
 
-  if (currentPin.length === 4) {
-    if (currentPin === TARGET_PIN) {
+  if (currentPin.length === 6) {
+    isVerifying = true;
+    const ok = await verifyPasscode(currentPin);
+    isVerifying = false;
+
+    if (ok) {
       unlockVault();
     } else {
-      vaultStatus.textContent = "INVALID PIN — HINT: OCT 15 (1015)";
+      vaultStatus.textContent = "INVALID PASSCODE";
       vaultStatus.className =
-        "text-center font-mono text-xs h-4 mb-4 text-pink-400";
+        "text-center font-mono text-[11px] tracking-widest h-4 mb-4 text-pink-400";
       pinDisplay.classList.add("animate-shake");
       setTimeout(() => {
         pinDisplay.classList.remove("animate-shake");
         currentPin = "";
+        vaultStatus.textContent = "ENTER PASSCODE";
+        vaultStatus.className =
+          "text-center font-mono text-[11px] tracking-widest h-4 mb-4 text-zinc-500";
         updatePinUI();
       }, 450);
     }
@@ -70,9 +104,9 @@ document.querySelectorAll("[data-key]").forEach((btn) => {
 
 document.getElementById("pin-clear").addEventListener("click", () => {
   currentPin = "";
-  vaultStatus.textContent = "AWAITING CREDENTIALS";
+  vaultStatus.textContent = "ENTER PASSCODE";
   vaultStatus.className =
-    "text-center font-mono text-xs h-4 mb-4 text-zinc-400";
+    "text-center font-mono text-[11px] tracking-widest h-4 mb-4 text-zinc-500";
   updatePinUI();
 });
 
@@ -81,19 +115,12 @@ document.getElementById("pin-back").addEventListener("click", () => {
   updatePinUI();
 });
 
-document.getElementById("quick-unlock-btn").addEventListener("click", () => {
-  dateVerifier.value = TARGET_DATE;
-  currentPin = TARGET_PIN;
-  updatePinUI();
-  unlockVault();
-});
-
 document.getElementById("relock-btn").addEventListener("click", () => {
   currentPin = "";
   updatePinUI();
-  vaultStatus.textContent = "VAULT SECURED — ENTER 1015";
+  vaultStatus.textContent = "ENTER PASSCODE";
   vaultStatus.className =
-    "text-center font-mono text-xs h-4 mb-4 text-zinc-400";
+    "text-center font-mono text-[11px] tracking-widest h-4 mb-4 text-zinc-500";
   vaultOverlay.classList.remove("vault-unlocked");
   mainExperience.classList.remove("active");
 });
@@ -104,11 +131,6 @@ window.addEventListener("keydown", (e) => {
   if (e.key === "Backspace") {
     currentPin = currentPin.slice(0, -1);
     updatePinUI();
-  }
-  if (e.key === "Enter" && dateVerifier.value === TARGET_DATE) {
-    currentPin = TARGET_PIN;
-    updatePinUI();
-    unlockVault();
   }
 });
 
