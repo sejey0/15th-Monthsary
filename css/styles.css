@@ -27,34 +27,14 @@ body {
 
 .border-gradient {
   position: relative;
-  background: #101017;
-  background-clip: padding-box;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #101014;
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-.border-gradient::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(
-    135deg,
-    rgba(244, 114, 182, 0.65),
-    rgba(168, 85, 247, 0.55),
-    rgba(52, 211, 153, 0.65)
-  );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-}
-
-.ambient-orb {
-  filter: blur(110px);
-  opacity: 0.32;
-  pointer-events: none;
+.pin-key:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.22);
+  transform: translateY(-1px);
 }
 
 .slide-tile {
@@ -164,9 +144,8 @@ body {
   width: 10px;
   height: 10px;
   border-radius: 9999px;
-  background: #f472b6;
+  background: #f4f4f6;
   cursor: pointer;
-  box-shadow: 0 0 8px rgba(244, 114, 182, 0.8);
 }
 
 .player-range::-moz-range-thumb {
@@ -174,7 +153,7 @@ body {
   height: 10px;
   border: none;
   border-radius: 9999px;
-  background: #f472b6;
+  background: #f4f4f6;
   cursor: pointer;
 }
 
