@@ -15,6 +15,85 @@ const bgAudio = document.getElementById("bg-audio");
 const audioToggleBtn = document.getElementById("audio-toggle-btn");
 const audioLabel = document.getElementById("audio-label");
 
+// =====================================================
+// LOGIN BACKGROUND SLIDESHOW (assets/images/*)
+// =====================================================
+const loginSlides = [
+  "assets/images/1st Image Together/1000019984.jpg",
+  "assets/images/Edits/us.png",
+  "assets/images/Edits/1.png",
+  "assets/images/Edits/2.png",
+  "assets/images/Bataan/2025/IMG_20251015_164306_427 (1) (1).jpg",
+  "assets/images/Bataan/2025/IMG_20251015_165640_604 (1) (1).jpg",
+  "assets/images/Bataan/2026/pm_1768128388305_cmp.jpg",
+  "assets/images/Bataan/2026/pm_1768128397417_cmp.jpg",
+  "assets/images/Manaoag/2025/pm_1768128416038_cmp.jpg",
+  "assets/images/Manaoag/2025/pm_1768128422150_cmp.jpg",
+  "assets/images/Tarlac/2025/IMG_20250811_171107_439.jpg",
+  "assets/images/Tarlac/2026/images/IMG_20260405_133631_155.jpg",
+  "assets/images/Tarlac/2026/images/July 2026/IMG20260704112812.jpg",
+  "assets/images/Tarlac/2026/images/July 2026/IMG20260704201645.jpg",
+  "assets/images/Video Call/IMG_20260615_201136.jpg",
+  "assets/images/Watch Together/22218c9a-a844-4294-89c5-6bbe7e80f12e.jpg"
+];
+
+const tiles = [
+  {
+    a: document.getElementById("tile-0-a"),
+    b: document.getElementById("tile-0-b"),
+    showingA: true
+  },
+  {
+    a: document.getElementById("tile-1-a"),
+    b: document.getElementById("tile-1-b"),
+    showingA: true
+  },
+  {
+    a: document.getElementById("tile-2-a"),
+    b: document.getElementById("tile-2-b"),
+    showingA: true
+  }
+];
+
+let slideCursor = 0;
+
+function nextSlideUrl() {
+  const url = encodeURI(loginSlides[slideCursor % loginSlides.length]);
+  slideCursor++;
+  return url;
+}
+
+if (tiles[0].a && loginSlides.length >= 3) {
+  tiles.forEach((tile) => {
+    tile.a.src = nextSlideUrl();
+  });
+
+  let activeTileToSwap = 0;
+  setInterval(() => {
+    if (vaultOverlay.classList.contains("vault-unlocked")) return;
+    const tile = tiles[activeTileToSwap];
+    const nextSrc = nextSlideUrl();
+
+    if (tile.showingA) {
+      tile.b.src = nextSrc;
+      tile.b.onload = () => {
+        tile.b.classList.add("active");
+        tile.a.classList.remove("active");
+        tile.showingA = false;
+      };
+    } else {
+      tile.a.src = nextSrc;
+      tile.a.onload = () => {
+        tile.a.classList.add("active");
+        tile.b.classList.remove("active");
+        tile.showingA = true;
+      };
+    }
+
+    activeTileToSwap = (activeTileToSwap + 1) % tiles.length;
+  }, 2200);
+}
+
 function verifyLocal(pin) {
   if (pin.length !== _V.length) return false;
   let diff = 0;
@@ -331,61 +410,61 @@ const galleryItems = [
   {
     id: "FRAME 01",
     category: "pink",
-    date: "AUG 2025",
-    title: "City Lights & Late Drives",
+    date: "JUL 2025",
+    title: "First Frame Together",
     caption:
-      "Windows down, playlists on repeat, and zero rush to reach the destination.",
-    image: "assets/images/memory-1.jpg",
+      "Where the story started—captured in a single frame we will always come back to.",
+    image: encodeURI("assets/images/1st Image Together/1000019984.jpg"),
     gradient: "from-pink-500/40 via-purple-600/20 to-black"
   },
   {
     id: "FRAME 02",
     category: "purple",
-    date: "NOV 2025",
-    title: "Golden Hour Rooftops",
+    date: "AUG 2025",
+    title: "Tarlac Memories",
     caption:
-      "Watching the skyline fade from violet to obsidian while talking about everything ahead.",
-    image: "assets/images/memory-2.jpg",
+      "Exploring side by side, turning every trip into our favorite shared routine.",
+    image: encodeURI("assets/images/Tarlac/2025/IMG_20250811_171107_439.jpg"),
     gradient: "from-purple-500/40 via-pink-500/20 to-black"
   },
   {
     id: "FRAME 03",
     category: "green",
-    date: "FEB 2026",
-    title: "Sunday Morning Sanctuary",
+    date: "OCT 2025",
+    title: "Bataan Getaway",
     caption:
-      "Sunlight through the blinds, poured coffee, and nowhere else we needed to be.",
-    image: "assets/images/memory-3.jpg",
+      "Golden skies, coastal breeze, and quiet moments away from everything else.",
+    image: encodeURI("assets/images/Bataan/2025/IMG_20251015_164306_427 (1) (1).jpg"),
     gradient: "from-emerald-400/40 via-purple-500/20 to-black"
   },
   {
     id: "FRAME 04",
     category: "pink",
-    date: "MAY 2026",
-    title: "Spontaneous Rain Walk",
+    date: "2025",
+    title: "Manaoag Sanctuary",
     caption:
-      "Caught in a downpour with one umbrella and laughing the entire block home.",
-    image: "assets/images/memory-4.jpg",
+      "Grateful hearts and peaceful walks together.",
+    image: encodeURI("assets/images/Manaoag/2025/pm_1768128416038_cmp.jpg"),
     gradient: "from-pink-400/40 via-emerald-400/20 to-black"
   },
   {
     id: "FRAME 05",
     category: "purple",
-    date: "JUL 2026",
-    title: "One-Year Horizon",
+    date: "JUN 2026",
+    title: "Late Night Video Calls",
     caption:
-      "Celebrating 365 days together with quiet gratitude and polaroid keepsakes.",
-    image: "assets/images/memory-5.jpg",
+      "No distance matters when every night ends with your smile on the screen.",
+    image: encodeURI("assets/images/Video Call/IMG_20260615_201136.jpg"),
     gradient: "from-purple-500/40 via-emerald-400/25 to-black"
   },
   {
     id: "FRAME 06",
     category: "green",
     date: "OCT 15, 2026",
-    title: "Chapter Fifteen: Present Day",
+    title: "Chapter Fifteen Collage",
     caption:
       "Fifteen months strong—still my favorite notification, conversation, and home.",
-    image: "assets/images/memory-6.jpg",
+    image: encodeURI("assets/images/Edits/us.png"),
     gradient: "from-emerald-400/40 via-pink-500/30 to-black"
   }
 ];
@@ -409,11 +488,17 @@ function renderGallery(filter = "all") {
     card.className =
       "group cursor-pointer rounded-3xl border border-white/10 bg-white/[0.02] hover:border-pink-400/40 transition-all duration-300 overflow-hidden flex flex-col";
     card.innerHTML = `
-      <div class="h-48 w-full bg-gradient-to-br ${item.gradient} relative flex items-center justify-center overflow-hidden">
+      <div class="h-64 w-full bg-gradient-to-br ${item.gradient} relative flex items-center justify-center overflow-hidden">
+        <img
+          src="${item.image}"
+          alt=""
+          class="absolute inset-0 w-full h-full object-cover blur-xl opacity-40 scale-110"
+          onerror="this.style.display='none'"
+        />
         <img
           src="${item.image}"
           alt="${item.title}"
-          class="absolute inset-0 w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-500"
+          class="relative z-10 w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
           onerror="this.style.display='none'"
         />
         <svg class="w-16 h-16 text-white/30 group-hover:scale-110 group-hover:text-white/60 transition-all duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
@@ -446,12 +531,18 @@ function renderGallery(filter = "all") {
       </div>
     `;
     card.addEventListener("click", () => {
-      lightboxArt.className = `w-full h-56 rounded-2xl overflow-hidden flex items-center justify-center border border-white/10 bg-gradient-to-br ${item.gradient} relative`;
+      lightboxArt.className = `w-full h-80 rounded-2xl overflow-hidden flex items-center justify-center border border-white/10 bg-gradient-to-br ${item.gradient} relative`;
       lightboxArt.innerHTML = `
         <img
           src="${item.image}"
+          alt=""
+          class="absolute inset-0 w-full h-full object-cover blur-xl opacity-40 scale-110"
+          onerror="this.style.display='none'"
+        />
+        <img
+          src="${item.image}"
           alt="${item.title}"
-          class="absolute inset-0 w-full h-full object-cover"
+          class="relative z-10 w-full h-full object-contain"
           onerror="this.style.display='none'"
         />
         <svg class="w-20 h-20 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">

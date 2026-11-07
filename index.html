@@ -44,11 +44,37 @@
   </div>
 
   <!-- 1. SECURE LOCK SCREEN (MONTHSARY VAULT) -->
-  <section id="vault-overlay" class="vault-transition fixed inset-0 z-50 bg-[#060608]/95 backdrop-blur-2xl flex items-center justify-center p-4 overflow-y-auto">
-    <div class="w-full max-w-sm border-gradient rounded-3xl p-7 sm:p-9 shadow-2xl relative overflow-hidden">
-      <div class="text-center mb-6">
-        <div class="w-12 h-12 mx-auto mb-4 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center relative">
-          <div class="absolute inset-0 rounded-2xl bg-gradient-to-tr from-pink-500/20 via-purple-500/20 to-emerald-400/20 opacity-80"></div>
+  <section id="vault-overlay" class="vault-transition fixed inset-0 z-50 bg-[#060608] flex items-center justify-center p-4 overflow-y-auto">
+    <!-- 3-Tile Full-Screen Background Slideshow -->
+    <div id="login-slideshow" class="fixed inset-0 pointer-events-none overflow-hidden">
+      <div class="grid grid-cols-3 w-full h-full gap-1.5 bg-[#060608]">
+        <div class="relative w-full h-full overflow-hidden">
+          <img id="tile-0-a" class="slide-tile active" alt="" />
+          <img id="tile-0-b" class="slide-tile" alt="" />
+        </div>
+        <div class="relative w-full h-full overflow-hidden">
+          <img id="tile-1-a" class="slide-tile active" alt="" />
+          <img id="tile-1-b" class="slide-tile" alt="" />
+        </div>
+        <div class="relative w-full h-full overflow-hidden">
+          <img id="tile-2-a" class="slide-tile active" alt="" />
+          <img id="tile-2-b" class="slide-tile" alt="" />
+        </div>
+      </div>
+      <!-- Dark Editorial Vignette & Subtle Neon Tint Overlay -->
+      <div class="absolute inset-0 bg-gradient-to-tr from-[#060608]/80 via-[#090910]/55 to-purple-950/40"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,#060608_95%)]"></div>
+    </div>
+
+    <div class="w-full max-w-sm border-gradient rounded-3xl p-7 sm:p-9 shadow-[0_0_70px_-15px_rgba(168,85,247,0.28)] relative overflow-hidden bg-[#101017]/90 backdrop-blur-2xl">
+      <!-- Top Gradient Accent Line -->
+      <div class="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-pink-400 via-purple-400 to-emerald-400"></div>
+      <!-- Soft Ambient Card Glow -->
+      <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-52 h-32 bg-gradient-to-b from-purple-500/25 via-pink-500/15 to-transparent blur-2xl pointer-events-none"></div>
+
+      <div class="text-center mb-6 relative z-10">
+        <div class="w-12 h-12 mx-auto mb-4 rounded-2xl bg-white/[0.06] border border-white/15 flex items-center justify-center relative shadow-inner">
+          <div class="absolute inset-0 rounded-2xl bg-gradient-to-tr from-pink-500/25 via-purple-500/25 to-emerald-400/25"></div>
           <svg id="lock-svg" class="w-5 h-5 text-white relative z-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
@@ -59,32 +85,32 @@
         </h1>
       </div>
 
-      <div id="pin-display" class="flex justify-center items-center gap-3 my-5 py-3.5 px-4 rounded-2xl bg-black/50 border border-white/10">
-        <div class="pin-dot w-3 h-3 rounded-full border border-zinc-500 transition-all duration-200"></div>
-        <div class="pin-dot w-3 h-3 rounded-full border border-zinc-500 transition-all duration-200"></div>
-        <div class="pin-dot w-3 h-3 rounded-full border border-zinc-500 transition-all duration-200"></div>
-        <div class="pin-dot w-3 h-3 rounded-full border border-zinc-500 transition-all duration-200"></div>
-        <div class="pin-dot w-3 h-3 rounded-full border border-zinc-500 transition-all duration-200"></div>
-        <div class="pin-dot w-3 h-3 rounded-full border border-zinc-500 transition-all duration-200"></div>
+      <div id="pin-display" class="flex justify-center items-center gap-3 my-5 py-3.5 px-4 rounded-2xl bg-white/[0.03] border border-white/10 relative z-10">
+        <div class="pin-dot w-3 h-3 rounded-full border border-zinc-400 transition-all duration-200"></div>
+        <div class="pin-dot w-3 h-3 rounded-full border border-zinc-400 transition-all duration-200"></div>
+        <div class="pin-dot w-3 h-3 rounded-full border border-zinc-400 transition-all duration-200"></div>
+        <div class="pin-dot w-3 h-3 rounded-full border border-zinc-400 transition-all duration-200"></div>
+        <div class="pin-dot w-3 h-3 rounded-full border border-zinc-400 transition-all duration-200"></div>
+        <div class="pin-dot w-3 h-3 rounded-full border border-zinc-400 transition-all duration-200"></div>
       </div>
 
-      <p id="vault-status" class="text-center font-mono text-[11px] tracking-widest h-4 mb-4 text-zinc-500 transition-colors">
+      <p id="vault-status" class="text-center font-mono text-[11px] tracking-widest h-4 mb-4 text-zinc-400 transition-colors relative z-10">
         ENTER PASSCODE
       </p>
 
-      <div class="grid grid-cols-3 gap-2.5 font-display text-lg font-medium">
-        <button type="button" data-key="1" class="pin-key h-12 rounded-xl bg-white/[0.03] border border-white/10 text-white">1</button>
-        <button type="button" data-key="2" class="pin-key h-12 rounded-xl bg-white/[0.03] border border-white/10 text-white">2</button>
-        <button type="button" data-key="3" class="pin-key h-12 rounded-xl bg-white/[0.03] border border-white/10 text-white">3</button>
-        <button type="button" data-key="4" class="pin-key h-12 rounded-xl bg-white/[0.03] border border-white/10 text-white">4</button>
-        <button type="button" data-key="5" class="pin-key h-12 rounded-xl bg-white/[0.03] border border-white/10 text-white">5</button>
-        <button type="button" data-key="6" class="pin-key h-12 rounded-xl bg-white/[0.03] border border-white/10 text-white">6</button>
-        <button type="button" data-key="7" class="pin-key h-12 rounded-xl bg-white/[0.03] border border-white/10 text-white">7</button>
-        <button type="button" data-key="8" class="pin-key h-12 rounded-xl bg-white/[0.03] border border-white/10 text-white">8</button>
-        <button type="button" data-key="9" class="pin-key h-12 rounded-xl bg-white/[0.03] border border-white/10 text-white">9</button>
-        <button type="button" id="pin-clear" class="pin-key h-12 rounded-xl bg-white/[0.02] border border-white/10 text-xs font-mono uppercase tracking-wider text-zinc-400 hover:text-white">CLR</button>
-        <button type="button" data-key="0" class="pin-key h-12 rounded-xl bg-white/[0.03] border border-white/10 text-white">0</button>
-        <button type="button" id="pin-back" aria-label="Backspace" class="pin-key h-12 rounded-xl bg-white/[0.02] border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white">
+      <div class="grid grid-cols-3 gap-2.5 font-display text-lg font-medium relative z-10">
+        <button type="button" data-key="1" class="pin-key h-12 rounded-xl bg-white/[0.05] border border-white/10 text-white">1</button>
+        <button type="button" data-key="2" class="pin-key h-12 rounded-xl bg-white/[0.05] border border-white/10 text-white">2</button>
+        <button type="button" data-key="3" class="pin-key h-12 rounded-xl bg-white/[0.05] border border-white/10 text-white">3</button>
+        <button type="button" data-key="4" class="pin-key h-12 rounded-xl bg-white/[0.05] border border-white/10 text-white">4</button>
+        <button type="button" data-key="5" class="pin-key h-12 rounded-xl bg-white/[0.05] border border-white/10 text-white">5</button>
+        <button type="button" data-key="6" class="pin-key h-12 rounded-xl bg-white/[0.05] border border-white/10 text-white">6</button>
+        <button type="button" data-key="7" class="pin-key h-12 rounded-xl bg-white/[0.05] border border-white/10 text-white">7</button>
+        <button type="button" data-key="8" class="pin-key h-12 rounded-xl bg-white/[0.05] border border-white/10 text-white">8</button>
+        <button type="button" data-key="9" class="pin-key h-12 rounded-xl bg-white/[0.05] border border-white/10 text-white">9</button>
+        <button type="button" id="pin-clear" class="pin-key h-12 rounded-xl bg-white/[0.03] border border-white/10 text-xs font-mono uppercase tracking-wider text-zinc-300 hover:text-white">CLR</button>
+        <button type="button" data-key="0" class="pin-key h-12 rounded-xl bg-white/[0.05] border border-white/10 text-white">0</button>
+        <button type="button" id="pin-back" aria-label="Backspace" class="pin-key h-12 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-zinc-300 hover:text-white">
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"></path>
             <line x1="18" y1="9" x2="12" y2="15"></line>
